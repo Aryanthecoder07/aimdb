@@ -1,14 +1,30 @@
-"use client"
-import Link from 'next/link'
-import React from 'react'
-import { useSearchParams } from 'next/navigation'
+"use client";
+import Link from "next/link";
+import React, { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
-export default function Navbaritem({title,param}) {
-    const searchParams=useSearchParams();
-    const genre=searchParams.get('genre')
+function NavbarItemContent({ title, param }) {
+  const searchParams = useSearchParams();
+  const genre = searchParams.get("genre");
+
   return (
-    <div>
-        <Link href={`/?genre=${param}`} className={`hover:text-amber-600 ${genre===param? 'underline underline-offset-8 decoration-4 decoration-amber-500 rounder-lg':''}`}>{title}</Link>
-    </div>
-  )
+    <Link
+      href={`/?genre=${param}`}
+      className={`hover:text-amber-600 ${
+        genre === param
+          ? "underline underline-offset-8 decoration-4 decoration-amber-500 rounded-lg"
+          : ""
+      }`}
+    >
+      {title}
+    </Link>
+  );
+}
+
+export default function Navbaritem({ title, param }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NavbarItemContent title={title} param={param} />
+    </Suspense>
+  );
 }
