@@ -47,64 +47,64 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-5">
-      <h1 className="text-3xl font-bold text-center mb-4">
+      <h1 className="text-3xl font-bold text-center mb-4 text-gray-900 dark:text-gray-100">
         Want the best movie suggestion according to your mood?
       </h1>
-      <h2 className="text-xl text-center mb-6">Give us a chance to help you.</h2>
-      <form
-  onSubmit={fetchMovies}
-  className="flex flex-col gap-4 w-full max-w-md"
->
-  {/* Language Selector */}
-  <select
-    value={language}
-    onChange={(e) => setLanguage(e.target.value)}
-    className="p-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-  >
-    {languages.map((lang) => (
-      <option key={lang.code} value={lang.code}>
-        {lang.name}
-      </option>
-    ))}
-  </select>
+      <h2 className="text-xl text-center mb-6 text-gray-700 dark:text-gray-300">
+        Give us a chance to help you.
+      </h2>
+      <form onSubmit={fetchMovies} className="flex flex-col gap-4 w-full max-w-md">
+        {/* Language Selector */}
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+          className="p-2 border rounded-md w-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        >
+          {languages.map((lang) => (
+            <option key={lang.code} value={lang.code}>
+              {lang.name}
+            </option>
+          ))}
+        </select>
 
-  {/* Genre Selector */}
-  <select
-    value={genre}
-    onChange={(e) => setGenre(e.target.value)}
-    className="p-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-  >
-    {genres.map((g) => (
-      <option key={g.id} value={g.id}>
-        {g.name}
-      </option>
-    ))}
-  </select>
+        {/* Genre Selector */}
+        <select
+          value={genre}
+          onChange={(e) => setGenre(e.target.value)}
+          className="p-2 border rounded-md w-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        >
+          {genres.map((g) => (
+            <option key={g.id} value={g.id}>
+              {g.name}
+            </option>
+          ))}
+        </select>
 
-  {/* Rating Input */}
-  <input
-    type="number"
-    placeholder="Rating above (e.g., 7)"
-    value={rating}
-    onChange={(e) => setRating(e.target.value)}
-    className="p-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
-  />
+        {/* Rating Input */}
+        <input
+          type="number"
+          placeholder="Rating above (e.g., 7)"
+          value={rating}
+          onChange={(e) => setRating(e.target.value)}
+          className="p-2 border rounded-md w-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+        />
 
-  {/* Submit Button */}
-  <button
-    type="submit"
-    className="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
-  >
-    Get Movie Suggestions
-  </button>
-</form>
-
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition w-full"
+        >
+          {loading ? "Fetching..." : "Get Movie Suggestions"}
+        </button>
+      </form>
 
       {/* Loader */}
-      {loading && <p className="text-center mt-4">Fetching movies...</p>}
+      {loading && <p className="text-center mt-4 text-gray-900 dark:text-gray-100">Fetching movies...</p>}
 
       {/* Results Component */}
-      <Results results={results} />
+      <div className="w-full max-w-4xl mt-6">
+        <Results results={results} />
+      </div>
     </div>
   );
 }
