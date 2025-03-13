@@ -25,7 +25,7 @@ export default function Page() {
         setSummary('');
 
         try {
-            const prompt = `Give  summary of the movie "${movie}" without giving any spoilers.`;
+            const prompt = `Give a summary of the movie "${movie}" without giving any spoilers.`;
 
             const response = await fetch(
                 `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
@@ -58,20 +58,20 @@ export default function Page() {
     }
 
     return (
-        <div className=" min-h-screen flex items-center flex-col justify-center">
-           
-
+        <div className="min-h-screen flex flex-col items-center justify-center ">
             {/* Main Content */}
             <div className="relative z-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md w-full max-w-md">
-                <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">Want to know a movie summary?</p>
-                <p className="text-gray-600 dark:text-gray-300">No spoilers, just a quick summary!</p>
+                <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    Want to know a movie summary?
+                </p>
+                <p className="text-gray-700 dark:text-gray-300">No spoilers, just a quick summary!</p>
                 <form className="mt-4">
                     <input
                         type="text"
                         placeholder="Enter movie name"
                         value={movie}
                         onChange={(e) => setMovie(e.target.value)}
-                        className="border p-2 w-full rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                        className="border p-2 w-full rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     />
                     <button
                         type="submit"
@@ -88,12 +88,12 @@ export default function Page() {
                         <p>Error: {error}</p>
                     </div>
                 )}
-
             </div>
-             {/* Background Summary with Transparent Effect */}
-             {summary && (
-                <div className=" flex items-center justify-center p-10">
-                    <p className="text-gray-800 dark:text-gray-200 text-2xl font-semibold  max-w-4xl text-center">
+
+            {/* Summary Section */}
+            {summary && (
+                <div className="flex items-center justify-center p-6">
+                    <p className="text-gray-500 text-lg font-semibold max-w-4xl text-center">
                         {summary}
                     </p>
                 </div>
